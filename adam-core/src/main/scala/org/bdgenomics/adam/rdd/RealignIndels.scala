@@ -119,7 +119,7 @@ private[rdd] object RealignIndels {
    *
    * @see mapToTarget
    */
-  def mapTargets(rich_rdd: RDD[RichADAMRecord], targets: TreeSet[IndelRealignmentTarget]): RDD[(IndelRealignmentTarget, Iterable[RichADAMRecord])] = {
+  def mapTargets(rich_rdd: RDD[RichADAMRecord], targets: TreeSet[IndelRealignmentTarget]): RDD[(IndelRealignmentTarget, Seq[RichADAMRecord])] = {
     val tmpZippedTargets = targets.zip(0 until targets.count(t => true))
     var tmpZippedTargets2 = new TreeSet[(IndelRealignmentTarget, Int)]()(ZippedTargetOrdering)
     tmpZippedTargets.foreach(t => tmpZippedTargets2 = tmpZippedTargets2 + t)

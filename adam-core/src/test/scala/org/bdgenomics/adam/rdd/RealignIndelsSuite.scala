@@ -114,7 +114,7 @@ class RealignIndelsSuite extends SparkFunSuite {
 
     val targets = RealignmentTargetFinder(artificial_reads)
     val rr = artificial_reads.map(RichADAMRecord(_))
-    val readsMappedToTarget: Array[Tuple2[IndelRealignmentTarget, Iterable[ADAMRecord]]] = RealignIndels.mapTargets(rr, targets).map(kv => {
+    val readsMappedToTarget: Array[(IndelRealignmentTarget, Seq[ADAMRecord])] = RealignIndels.mapTargets(rr, targets).map(kv => {
       val (t, r) = kv
 
       (t, r.map(r => r.record))

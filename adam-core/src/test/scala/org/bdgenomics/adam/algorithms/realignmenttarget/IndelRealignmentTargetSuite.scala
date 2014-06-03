@@ -54,7 +54,7 @@ class IndelRealignmentTargetSuite extends SparkFunSuite {
       .build()
   }
 
-  def make_pileup(reads: RDD[ADAMRecord]): Array[Iterable[ADAMPileup]] = {
+  def make_pileup(reads: RDD[ADAMRecord]): Array[Seq[ADAMPileup]] = {
     reads.adamRecords2Pileup().groupBy(_.getPosition).sortByKey().map(_._2).collect()
   }
 
