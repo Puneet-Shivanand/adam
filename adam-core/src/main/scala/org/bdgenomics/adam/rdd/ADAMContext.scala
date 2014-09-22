@@ -116,6 +116,7 @@ class ADAMContext(val sc: SparkContext) extends Serializable with Logging {
     log.info("Reading the ADAM file at %s to create RDD".format(filePath))
     val job = HadoopUtil.newJob(sc)
     ParquetInputFormat.setReadSupportClass(job, classOf[AvroReadSupport[T]])
+    ParquetInputFormat.setTaskSideMetaData(job, true)
     if (predicate.isDefined) {
       log.info("Using the specified push-down predicate")
       ParquetInputFormat.setUnboundRecordFilter(job, predicate.get)
